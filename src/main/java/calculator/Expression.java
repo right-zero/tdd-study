@@ -3,6 +3,7 @@ package calculator;
 public class Expression {
     private final static String OPERATOR = " ";
     private final static int OPERATOR_LOOP_ZERO = 0;
+
     private String[] expressions;
     private Number number = new Number();
     private Operator operator = new Operator();
@@ -40,12 +41,10 @@ public class Expression {
         int size = operator.getOperators().size();
 
         for (int i = OPERATOR_LOOP_ZERO; i < size; i++) {
-            int leftOperand = number.getNumber();
-            int rightOperand = number.getNumber();
-            String operator = this.operator.getOperator();
-            Integer sum = Calculator.calculator().get(operator).calculate(leftOperand, rightOperand);
+            Integer sum = Calculator.calculator().get(operator.getOperator()).calculate(number.getNumber(), number.getNumber());
             number.addNumber(sum);
         }
+
         return number.getNumber();
     }
 
