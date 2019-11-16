@@ -34,9 +34,7 @@ public class RacingGame {
         for (int i = GAME_START_COUNT; i < inputView.getTrialCount(); i++) {
             cars.moveAllCars();
         }
-
-        System.out.printf("우승자: %s", winners.getWinners(cars)
-                .stream().map(Car::getCarName).collect(Collectors.joining(",")));
+        ResultView.printWinner(winners.getWinners(cars));
     }
 
 }
