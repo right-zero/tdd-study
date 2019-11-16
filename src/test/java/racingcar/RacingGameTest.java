@@ -7,9 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class RacingGameTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {10})
-    public void racingGameStart(int input) {
-        RacingGame racingGame = new RacingGame();
-        racingGame.ready();
+    @ValueSource(strings = {"tom,jo,jayden,yohan,john,timothy"})
+    public void racingGameStart() {
+        Cars cars = new Cars();
     }
 }

@@ -1,38 +1,43 @@
 package racingcar;
 
 public class RacingGame {
-    private RacingCars racingCars;
+    private final static String SPLITTER = ",|\\s";
+    private final static int GAME_START_COUNT = 0;
 
-    public void ready() {
-        String data = "tom,jo,timothy,yohan";
-        String[] drivers = data.split(",");
-        int carCount = drivers.length;
+    private Cars cars;
+    private Winners winners;
 
-        racingCars = new RacingCars();
+    public RacingGame() {
+        cars = new Cars();
+        winners = new Winners();
+    }
 
-        for (int i = 0; i < carCount; i++) {
-            racingCars.addCar(new Car(drivers[i]));
+    private String[] participantSplit(String data) {
+        dataValidate(data);
+        return data.split(SPLITTER);
+    }
+
+    private void dataValidate(String data) {
+        if (data == null || "".equals(data)) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void gameStart() {
+        InputView inputView = new InputView();
+
+        for (String carName : participantSplit(inputView.getParticipatedCars())) {
+            cars.addCar(new Car(carName));
         }
 
-        System.out.println("============= 준비 =============");
-
-        System.out.println(racingCars.getResult());
-
-        int count = 5;
-
-        for (int i = 0; i < count; i++) {
-            racingCars.moveAllCars();
+        for (int i = GAME_START_COUNT; i < inputView.getTrialCount(); i++) {
+            cars.moveAllCars();
         }
 
-        System.out.println("============= 경주 =============");
-
-        System.out.println(racingCars.getResult());
-
-        System.out.println("============= 정렬 =============");
-
-        System.out.println(racingCars.sort());
-
-        System.out.println("============= 우승자 정하기 =============");
+        for (Car winner : winners.getWinners(cars)) {
+            System.out.println(winner.getCarInfo());
+        }
 
     }
+
 }
