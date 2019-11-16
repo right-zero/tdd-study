@@ -41,7 +41,7 @@ public class Expression {
         int size = operator.getOperators().size();
 
         for (int i = OPERATOR_LOOP_ZERO; i < size; i++) {
-            Integer sum = Calculator.calculator().get(operator.getOperator()).calculate(number.getNumber(), number.getNumber());
+            Integer sum = Calculator.getOperators(operator.getOperator()).calculate(number.getNumber(), number.getNumber());
             number.addNumber(sum);
         }
 
