@@ -1,5 +1,7 @@
 package racingcar;
 
+import java.util.stream.Collectors;
+
 public class RacingGame {
     private final static String SPLITTER = ",|\\s";
     private final static int GAME_START_COUNT = 0;
@@ -29,15 +31,12 @@ public class RacingGame {
         for (String carName : participantSplit(inputView.getParticipatedCars())) {
             cars.addCar(new Car(carName));
         }
-
         for (int i = GAME_START_COUNT; i < inputView.getTrialCount(); i++) {
             cars.moveAllCars();
         }
 
-        for (Car winner : winners.getWinners(cars)) {
-            System.out.println(winner.getCarInfo());
-        }
-
+        System.out.printf("우승자: %s", winners.getWinners(cars)
+                .stream().map(Car::getCarName).collect(Collectors.joining(",")));
     }
 
 }

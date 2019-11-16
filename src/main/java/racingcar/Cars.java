@@ -3,7 +3,7 @@ package racingcar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cars implements Cloneable{
+public class Cars implements Cloneable {
 
     private List<Car> cars;
 
@@ -18,8 +18,8 @@ public class Cars implements Cloneable{
     public void moveAllCars() {
         for (Car car : cars) {
             car.move();
-            System.out.println(car.getCarInfo());
         }
+        ResultView.print(cars);
     }
 
     public List<Car> getCars() {
