@@ -9,28 +9,28 @@ class CalculatorTest {
 
     @Test
     void addTest() {
-        Calculator calculator = Calculator.calculator().get("+");
+        Calculator calculator = Calculator.getOperators("+");
         Integer result = calculator.calculate(operands[0], operands[1]);
         Assertions.assertThat(result).isEqualTo(8);
     }
 
     @Test
     void subTest() {
-        Calculator calculator = Calculator.calculator().get("-");
+        Calculator calculator = Calculator.getOperators("-");
         Integer result = calculator.calculate(operands[0], operands[1]);
         Assertions.assertThat(result).isEqualTo(2);
     }
 
     @Test
     void mulTest() {
-        Calculator calculator = Calculator.calculator().get("*");
+        Calculator calculator = Calculator.getOperators("*");
         Integer result = calculator.calculate(operands[0], operands[1]);
         Assertions.assertThat(result).isEqualTo(15);
     }
 
     @Test
     void divTest() {
-        Calculator calculator = Calculator.calculator().get("/");
+        Calculator calculator = Calculator.getOperators("/");
         Integer result = calculator.calculate(operands[0], operands[1]);
         Assertions.assertThat(result).isEqualTo(1);
     }

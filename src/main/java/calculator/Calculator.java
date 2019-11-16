@@ -10,23 +10,28 @@ public enum Calculator {
     MUL((leftOperand, rightOperand) -> leftOperand * rightOperand),
     DIV((leftOperand, rightOperand) -> leftOperand / rightOperand);
 
+    private static final Map<String, Calculator> OPERATORS;
+
     private BiFunction<Integer, Integer, Integer> expression;
 
     Calculator(BiFunction<Integer, Integer, Integer> expression) {
         this.expression = expression;
     }
 
+    static {
+        OPERATORS = new HashMap<>();
+        OPERATORS.put("+", Calculator.ADD);
+        OPERATORS.put("-", Calculator.SUB);
+        OPERATORS.put("*", Calculator.MUL);
+        OPERATORS.put("/", Calculator.DIV);
+    }
+
     public Integer calculate(Integer leftOperand, Integer rightOperand) {
         return expression.apply(leftOperand, rightOperand);
     }
 
-    public static Map<String, Calculator> calculator() {
-        Map<String, Calculator> map = new HashMap<>();
-        map.put("+", Calculator.ADD);
-        map.put("-", Calculator.SUB);
-        map.put("*", Calculator.MUL);
-        map.put("/", Calculator.DIV);
-        return map;
+    public static Calculator getOperators(String input) {
+        return OPERATORS.get(input);
     }
 
 }
