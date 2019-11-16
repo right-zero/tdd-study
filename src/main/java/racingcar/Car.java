@@ -2,32 +2,30 @@ package racingcar;
 
 import java.util.Random;
 
-public class Car implements Comparable<Integer>{
+public class Car {
     private static final int MOVE_BOUND = 10;
     private static final int MOVE_CONDITION = 4;
 
-    // TODO 기본 스트링 말고 튜플등 다른 데이터 구조로 수정
-    private String driver;
+    private String carName;
     private int moveCount;
     private Random random = new Random();
 
-    public Car(String driver) {
-        this.driver = driver;
+    public Car(String carName) {
+        this.carName = carName;
     }
 
     public String getCarInfo() {
-        return "{\"driver\": " + driver + ", \"moveCount:\" " + moveCount + "}";
+        return "{\"carName\": " + carName + ", \"moveCount:\" " + moveCount + "}";
     }
 
     private boolean validateMoveOrNot() {
         int randomCount = random.nextInt(MOVE_BOUND);
-        if (randomCount >= 4) {
+        if (randomCount >= MOVE_CONDITION) {
             return true;
         }
         return false;
     }
 
-    // TODO 리턴값 변경해야함.
     public Car move() {
         if (validateMoveOrNot()) {
             moveCount++;
@@ -35,13 +33,19 @@ public class Car implements Comparable<Integer>{
         return this;
     }
 
-    public int getMoveCount() {
-        return moveCount;
+    public int checkWinnerCount(int data) {
+        return Math.max(data, moveCount);
     }
 
-    @Override
-    public int compareTo(Integer o) {
-        return o.intValue();
+    public boolean isWinner(int winnerCount) {
+        if (winnerCount > moveCount) {
+            return false;
+        }
+        return true;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
     }
 
 }
