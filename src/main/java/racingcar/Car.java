@@ -14,8 +14,12 @@ public class Car {
         this.carName = carName;
     }
 
-    public String getCarInfo() {
-        return "{\"carName\": " + carName + ", \"moveCount:\" " + moveCount + "}";
+    public String getCarName() {
+        return carName;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
     }
 
     private boolean validateMoveOrNot() {
@@ -42,10 +46,6 @@ public class Car {
             return false;
         }
         return true;
-    }
-
-    public int getMoveCount() {
-        return moveCount;
     }
 
 }
